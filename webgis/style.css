@@ -1,0 +1,165 @@
+*{
+    box-sizing: border-box;
+    margin: -1.8px;
+    padding: 0;
+}
+#body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+#map {
+    height: 100vh;
+    width: 100vw;
+}
+
+#legend{
+    z-index: 11;
+    padding: 4px 8px;
+    border: 2px solid grey;
+    position: absolute;
+    bottom: 0px;
+    height: 15%;
+    width: 15%;
+    right: 0px;
+    background-image:url("http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=baocaothuctap:layermatdat2021");
+    font-weight: bold;
+}
+
+.mousePosition{
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+    background-color: rgba(195, 135, 135, 0.982);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.myButton{
+    background-color: rgba(39, 142, 186, 0.952);
+    color:white;
+    font-weight: 700;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border-radius:2px;
+    border: none;
+    align-items: center;
+}
+.myButtonDiv{
+    position: relative;
+    display: block;
+    margin: 10px auto auto 10px;
+}
+.myButton:hover{
+    background-color:rgb(0, 255, 98);
+}
+.myButton:clicked{
+    background-color:rgba(70, 223, 70, 0.831)
+}
+.myButton.clicked:hover{
+    background-color:rgba(70, 223, 70, 1)
+}
+
+.homeButtonDiv{
+    position: relative;
+    display: block;
+    margin: 5px auto auto 35px;
+}
+.fsButtonDiv{
+    position: relative;
+    display: block;
+    margin: 5px auto auto 35px;
+}
+
+.myButtonDiv{
+    position: relative;
+    display: block;
+    margin: 5px auto auto 35px;
+}
+
+
+.attQueryDiv{
+    position: absolute;
+    display: none;
+    margin: -650px auto auto 75px;
+    width: 250px;
+    background-color:white;
+    font-family: inherit;
+    font-size: 1em;
+    line-height:1.45;
+    border-radius: 2px;
+    border: 1px solid white;
+    box-shadow: 0px 0px 15px grey;
+}
+#headerDiv{
+    background-color: midnightblue;
+    height: 35px;
+}
+
+#headerDiv label{
+    color: white;
+}
+
+.attQueryDiv select{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin: 0px auto 0px 10px;
+}
+
+.attQueryDiv input{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin: 0px auto 0px 10px;
+}
+.attQueryDiv label{
+    color: grey;
+    margin: 10px 10px 0px 10px;
+}
+.attQueryDiv label:nth-child(1){
+    margin: 10px;
+    font-weight: bold;
+}
+
+.attListDiv{
+    position: absolute;
+    display: none;
+    margin: 350px auto auto 350px;
+    width: auto;
+    max-width: 750px;
+    height: 250px;
+    background-color: white;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid lightgrey;
+    box-shadow: 2px 3px 2px black;
+    overflow: scroll;
+}
+.attQryTable{
+    padding: 0;
+    border: 1px solid black;
+}
+.attQryTable th{
+    color: white;
+    background-color: midnightblue;
+    position: sticky;
+    top: 0;
+    font-size: normal;
+    padding:5px 10px 5px 10px;
+}
+
+.attQryTable tr:hover{
+    background-color:lightgreen;
+}
