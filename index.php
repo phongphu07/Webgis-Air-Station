@@ -30,7 +30,15 @@ session_start();
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
-
+<style>
+#hero {
+  width: 100%;
+  height: 80vh;
+  background: url("./assets/img/bg1.jpg") center center;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <body>
 
   <!-- ======= Header ======= -->

@@ -27,7 +27,7 @@
                         <div class="card-body">
 
                             <!-- Main content -->
-                            <form class="form-horizontal style-form" style="margin-top: 10px;" action="add_action.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                            <form class="form-horizontal style-form" style="margin-top: 10px;" action="add_air_station_action.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">Name</label>
                                     <div class="col-sm-6">
@@ -64,7 +64,7 @@
                                         <input name="img" class="form-control" type="text" placeholder="https:image.jpg" required />
                                     </div>
                                 </div>
-                                <div class="form-group" style="margin-bottom: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;margin-left:22%">
                                     <label class="col-sm-2 col-sm-4 control-label"></label>
                                     <div class="col-sm-8">
                                         <input type="submit" value="Save" class="btn btn-sm btn-primary" />

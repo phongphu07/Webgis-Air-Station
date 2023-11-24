@@ -28,7 +28,15 @@
 
 
 </head>
-
+<style>
+#hero {
+  width: 100%;
+  height: 80vh;
+  background: url("./assets/img/bg1.jpg") center center;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <body>
 <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">

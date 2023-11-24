@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
  
-                                <div class="form-group" style="margin-bottom: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px; margin-left:22%">
                                     <label class="col-sm-2 col-sm-4 control-label"></label>
                                     <div class="col-sm-8">
                                         <input type="submit" value="Save" class="btn btn-sm btn-primary" />

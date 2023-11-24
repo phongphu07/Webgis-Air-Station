@@ -52,7 +52,7 @@
                                         <input name="meta_description" class="form-control" type="text" required />
                                     </div>
                                 </div>
-                                <button type="submit" name="add_post_news_action"  class="btn btn-sm btn-primary">Save</button>
+                                <button type="submit" name="add_post_news_action" style="margin-left:22%"  class="btn btn-sm btn-primary">Save</button>
                                 <div style="margin-top: 20px;"></div>
                             </form>
                         </div>

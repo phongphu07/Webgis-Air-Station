@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +19,45 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+<?php
+// Kết nối cơ sở dữ liệu (chỉ là ví dụ, cần thay đổi thông tin để phản ánh cấu hình của bạn)
+include "../connect.php";
+
+// Kiểm tra kết nối
+
+// Truy vấn SQL để đếm số lượng trạm trong bảng "air_station"
+$sql = "SELECT COUNT(*) as total_stations FROM air_station";
+$result = $connect->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_stations = $row['total_stations'];
+}
+
+$sqlPostNews = "SELECT COUNT(*) as total_posts FROM post_news";
+$resultPostNews = $connect->query($sqlPostNews);
+
+if ($resultPostNews->num_rows > 0) {
+    $rowPostNews = $resultPostNews->fetch_assoc();
+    $total_posts = $rowPostNews['total_posts'];
+}
+
+$sqlRoleAsCount = "SELECT COUNT(*) as total_role_as FROM admin WHERE role_as = 1";
+$resultRoleAsCount = $connect->query($sqlRoleAsCount);
+
+if ($resultRoleAsCount->num_rows > 0) {
+    $rowRoleAsCount = $resultRoleAsCount->fetch_assoc();
+    $totalRoleAs1 = $rowRoleAsCount['total_role_as'];
+}
+$sqlRoleAsCount = "SELECT COUNT(*) as total_role_as FROM admin WHERE role_as = 0";
+$resultRoleAsCount = $connect->query($sqlRoleAsCount);
+
+if ($resultRoleAsCount->num_rows > 0) {
+    $rowRoleAsCount = $resultRoleAsCount->fetch_assoc();
+    $totalRoleAs0 = $rowRoleAsCount['total_role_as'];
+}
+
+?>
 
 <body id="page-top">
 
@@ -46,7 +84,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="print.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <a style="background-color:rgb(60,179,113)" href="print.php" class="d-none d-sm-inline-block btn btn-sm shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
@@ -59,8 +97,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Tổng Số Trạm Quan Trắc</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_stations; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -77,8 +115,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Tổng số Tin Tức</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_posts; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -94,16 +132,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Số Lượng Admin
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $totalRoleAs1; ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,8 +155,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Số lượng User</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalRoleAs0; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -139,7 +172,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-7 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -167,7 +200,7 @@
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-5 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -188,17 +221,18 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <canvas id="myPieChart" style="display: block; margin: auto;"></canvas>
                                     </div>
+
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i>An Ninh - Trật Tự
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> Phát Luật - Đời Sống
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle text-info"></i> Vệ Sinh - An Toàn Thực Phẩm
                                         </span>
                                     </div>
                                 </div>
@@ -408,7 +442,65 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <?php
+    // Kết nối cơ sở dữ liệu (chỉ là ví dụ, cần thay đổi thông tin để phản ánh cấu hình của bạn)
+    include "../connect.php";
+
+    // Kiểm tra kết nối và thực hiện truy vấn
+    if ($connect) {
+        // Truy vấn SQL để đếm số lượng bản ghi có các giá trị meta_description cụ thể trong bảng "post_news"
+        $sqlMetaDescriptionCount = "SELECT 
+        SUM(CASE WHEN meta_description = 'Anninh-Trattu' THEN 1 ELSE 0 END) AS anninh_trattu_count,
+        SUM(CASE WHEN meta_description = 'phapluat-doisong' THEN 1 ELSE 0 END) AS phapluat_doisong_count,
+        SUM(CASE WHEN meta_description = 'vesinhantoan-thucpham' THEN 1 ELSE 0 END) AS vesinhantoan_thucpham_count
+        FROM post_news";
+
+        $resultMetaDescriptionCount = $connect->query($sqlMetaDescriptionCount);
+
+        if ($resultMetaDescriptionCount->num_rows > 0) {
+            $rowMetaDescriptionCount = $resultMetaDescriptionCount->fetch_assoc();
+            $anninh_trattu_count = $rowMetaDescriptionCount['anninh_trattu_count']; // Số lượng bài báo có meta_description = 'Anninh-Trattu'
+            $phapluat_doisong_count = $rowMetaDescriptionCount['phapluat_doisong_count']; // Số lượng bài báo có meta_description = 'phapluat-doisong'
+            $vesinhantoan_thucpham_count = $rowMetaDescriptionCount['vesinhantoan_thucpham_count']; // Số lượng bài báo có meta_description = 'vesinhantoan-thucpham'
+        }
+    }
+    ?>
+    <script>
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["An Ninh - Trật Tự", "Phát Luật - Đời Sống", "Vệ Sinh - An Toàn Thực Phẩm"],
+                datasets: [{
+                    data: [<?php echo $anninh_trattu_count; ?>, <?php echo $phapluat_doisong_count; ?>, <?php echo $vesinhantoan_thucpham_count; ?>],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+                animation: {
+                    animateRotate: false, // Hiệu ứng quay
+                    animateScale: false // Hiệu ứng thu phóng
+                }
+            },
+        });
+    </script>
 
 </body>
 

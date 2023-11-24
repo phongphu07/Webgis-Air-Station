@@ -31,9 +31,6 @@ session_start();
                         <h1 class="h3 mb-0 text-gray-800">Chi tiết <?php echo $data['name']; ?></h1>
                     </div>
                     <div style="display: flex; align-items: center;"> <!-- Thêm thuộc tính align-items: center; để căn giữa hình ảnh -->
-                        <div style="margin-right: 20px;"> <!-- Thêm margin để tạo khoảng cách giữa hình ảnh và card -->
-                            <img src="<?php echo $data['img']; ?>" alt="">
-                        </div>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Details</h6>
@@ -64,6 +61,9 @@ session_start();
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div style="margin-right: 20px;"> <!-- Thêm margin để tạo khoảng cách giữa hình ảnh và card -->
+                            <img src="<?php echo $data['img']; ?>" alt="">
                         </div>
                     <!-- DataTales Example -->
                 </div>

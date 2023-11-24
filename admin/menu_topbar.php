@@ -1,4 +1,4 @@
-
+<?php include "../connect.php" ?>
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -11,8 +11,8 @@
       </div>
       <div class="modal-body">Select "Ok" if you want back to home page.</div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="../index.php">Ok</a>
+        <button style="background-color:#d00" class="btn" type="button" data-dismiss="modal">Cancel</button>
+        <a style="background-color:rgb(60,179,113)" class="btn " href="../index.php">Ok</a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="input-group">
       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button">
+        <button class="btn " type="button" style="background-color:rgb(60,179,113)">
           <i class="fas fa-search fa-sm"></i>
         </button>
       </div>
@@ -89,7 +89,7 @@
   <ul class="navbar-nav ml-auto">
 
     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-    <li class="nav-item dropdown no-arrow d-sm-none">
+    <li class="nav-item dropdown no-arrow d-sm-none" >
       <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-search fa-fw"></i>
       </a>
@@ -112,7 +112,17 @@
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+        <?php
+        include "../connect.php";
+        $query = "SELECT username FROM admin"; 
+        $result = mysqli_query($connect, $query);
+
+        if ($result) {
+          $row = mysqli_fetch_assoc($result);
+          $username = $row['username'];
+          echo '<span class="mr-2 d-none d-lg-inline text-gray-600 small">' . htmlspecialchars($username) . '</span>';
+        }
+        ?> 
         <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
       </a>
       <!-- Dropdown - User Information -->
