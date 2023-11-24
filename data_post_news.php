@@ -39,26 +39,49 @@
 
   <!-- Start about-info Area -->
   <section class="about-info-area section-gap">
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row">
+      <div class="col-lg-8">
+        <?php
+        $data = file_get_contents('http://localhost:8080/webgis-air-station/retrieve_data.php');
+        if (json_decode($data, true)) {
+          $obj = json_decode($data);
+          foreach ($obj->results as $item) {
+        ?>
+            <a href="detail_post_news.php?id=<?php echo $item->id ?>" class="card card-body shadow-sm mb-4" style="text-decoration: none; border: 1px solid #ccc; border-radius: 8px; padding: 20px; transition: all 0.3s ease; color: #333; display: block; margin-bottom: 20px;">
+              <h5 class="card-title" style="font-size: 1.25rem; margin-bottom: 10px;"><b><?php echo $item->name ?></b></h5>
+              <div class="card-footer" style="margin-top: 15px; font-size: 0.875rem; color: #888;">
+              <span><i>Đã đăng ngày: <?php echo date('d-M-Y', strtotime($item->created_at)); ?> </i> lúc: <?php echo date('H:i:s', strtotime($item->created_at)); ?> </span>
+              </div>
+            </a>
+        <?php
+          }
+        } else {
+          echo "data is missing.";
+        } ?>
+      </div>
+      <div class="col-lg-4">
       <?php
-      $data = file_get_contents('http://localhost:8080/Air_station/retrieve_data.php');
-      if (json_decode($data, true)) {
-        $obj = json_decode($data);
-        foreach ($obj->results as $item) {
-      ?>
-          <a href="detail_post_news.php?id=<?php echo $item->id ?>" class="card card-body shadow-sm mb-4" style="text-decoration: none; border: 1px solid #ccc; border-radius: 8px; padding: 20px; transition: all 0.3s ease; color: #333; display: block; margin-bottom: 20px;">
-            <h5 class="card-title" style="font-size: 1.25rem; margin-bottom: 10px;"><b><?php echo $item->name ?></b></h5>
-            <div class="card-footer" style="margin-top: 15px; font-size: 0.875rem; color: #888;">
-              <span>Đã đăng: <?php echo date('d-M-Y', strtotime($item->created_at)) ?></span>
-            </div>
-          </a>
-      <?php
-        }
-      } else {
-        echo "data tidak ada.";
-      } ?>
+        $data = file_get_contents('http://localhost:8080/webgis-air-station/retrieve_data.php');
+        if (json_decode($data, true)) {
+          $obj = json_decode($data);
+          foreach ($obj->results as $item) {
+        ?>
+            <a href="detail_post_news.php?id=<?php echo $item->id ?>" class="card card-body shadow-sm mb-4" style="text-decoration: none; border: 1px solid #ccc; border-radius: 8px; padding: 20px; transition: all 0.3s ease; color: #333; display: block; margin-bottom: 20px;">
+              <h5 class="card-title" style="font-size: 1.25rem; margin-bottom: 10px;"><b><?php echo $item->name ?></b></h5>
+              <div class="card-footer" style="margin-top: 15px; font-size: 0.875rem; color: #888;">
+              <span><i>Đã đăng ngày: <?php echo date('d-M-Y', strtotime($item->created_at)); ?> </i> lúc: <?php echo date('H:i:s', strtotime($item->created_at)); ?> </span>
+              </div>
+            </a>
+        <?php
+          }
+        } else {
+          echo "data is missing.";
+        } ?>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
   <!-- End about-info Area -->
   <?php include "footer.php"; ?>
 

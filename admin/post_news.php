@@ -1,8 +1,5 @@
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
-    header("location:../post_news.php?pesan=belum_login");
-}
 include "../connect.php";
 ?>
 

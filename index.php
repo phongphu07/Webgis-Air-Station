@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +13,11 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
   <link href="assets/img/logo1.png" rel="icon">
   <link href="assets/img/logo.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -25,16 +26,9 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!-- =======================================================
-  * Template Name: Bethany - v2.2.0
-  * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -45,17 +39,26 @@
       <div class="header-container d-flex align-items-center">
         <div class="logo mr-auto">
           <h1 class="text-light"><a href="index.php"><span>SIG</span></a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li class="active"><a href="#header">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#portfolio">Air Station Data</a></li>
-            <li><a href="./webgis/2BanDo.html">Map</a></li>
-            <li><a href="admin/index.php">Admin Control</a></li>
+            <li><a href="./data_post_news.php">News</a></li>
+            <li><a href="http://localhost:8080/webgis-air-station/webgis/2BanDo.php">Map</a></li>
+            <?php
+            if (isset($_SESSION['role_as'])) {
+              if ($_SESSION['role_as'] == 0) {
+              } else {
+                echo '<li><a href="./admin/index.php">Admin Control</a></li>';
+              }
+            } else {
+              echo '<li><a href="./admin/index.php">Admin Control</a></li>';
+            }
+            ?>
+
             <li class="get-started"><a href="logout.php">Logout</a></li>
           </ul>
         </nav><!-- .nav-menu -->
@@ -66,10 +69,18 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="100">
+      <?php
+      if (isset($_SESSION['role_as'])) {
+        if ($_SESSION['role_as'] == 1) {
+          echo '<h1>WELCOME ADMIN TO</h1>';
+        } else {
+          echo '<h1>WELCOME USER TO</h1>';
+        }
+      }
+      ?>
       <h1>SISTEM INFORMASI GEOGRAFIS</h1>
-      <h1>TOURIST ATTRACTION</h1>
-      <h2>BANYUMAS DISTRICT</h2>
       <a href="#about" class="btn-get-started scrollto">Start</a>
+
     </div>
   </section><!-- End Hero -->
 
@@ -101,14 +112,14 @@
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
             <p>
-            This high school geographic mapping application contains information and locations from high schools and vocational schools in Surabaya. The mapping is taken from Google Maps location data and data from each school's website. This application contains a number of information regarding :
+              This high school geographic mapping application contains information and locations from high schools and vocational schools in Surabaya. The mapping is taken from Google Maps location data and data from each school's website. This application contains a number of information regarding :
             </p>
             <ul>
               <li><i class="ri-check-double-line"></i> State High School</li>
               <li><i class="ri-check-double-line"></i> Public vocational secondary schools</li>
             </ul>
             <p class="font-italic">
-            Information may change at any time
+              Information may change at any time
             </p>
           </div>
         </div>
@@ -200,35 +211,43 @@
                     <thead>
                       <tr>
                         <th width="5%">ID</th>
-                        <th width="30%">Tour Name</th>
+                        <th width="30%">Name</th>
                         <th width="35%">Address</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $data = file_get_contents('http://localhost:8080/Air_Station/retrieve_data.php');
-                      $no = 1;
-                      if (json_decode($data, true)) {
-                        $obj = json_decode($data);
-                        foreach ($obj->results as $item) {
-                      ?>
-                          <tr>
-                            <td><?php echo $no; ?></td>
-                            <td><?php echo $item->name; ?></td>
-                            <td><?php echo $item->address; ?></td>
-                            <td class="ctr">
-                              <div class="btn-group">
-                                <a href="detail_air_station.php?id=<?php echo $item->id; ?>" rel="tooltip" data-original-title="Lihat File" data-placement="top" class="btn btn-primary">
-                                  <i class="fa fa-map-marker"> </i> Details and Location</a>&nbsp;
-                              </div>
-                            </td>
-                          </tr>
-                      <?php $no++;
-                        }
-                      } else {
-                        echo "Data is missing.";
-                      } ?>
+                      include "connect.php";
+                      $Q = mysqli_query($connect, "SELECT * FROM air_station");
 
+                      if ($Q) {
+                        $posts = array();
+                        if (mysqli_num_rows($Q)) {
+                          while ($post = mysqli_fetch_assoc($Q)) {
+                            $posts[] = $post;
+                          }
+                          $no = 1; 
+                          foreach ($posts as $item) { 
+                      ?>
+                            <tr>
+                              <td><?php echo $no; ?></td>
+                              <td><?php echo $item['name']; ?></td>
+                              <td><?php echo $item['address']; ?></td>
+                              <td class="ctr">
+                                <div class="btn-group">
+                                  <a href="detail_air_station.php?id=<?php echo $item['id']; ?>" rel="tooltip" data-original-title="Lihat File" data-placement="top" class="btn btn-primary">
+                                    <i class="fa fa-map-marker"></i> Details and Location</a>&nbsp;
+                                </div>
+                              </td>
+                            </tr>
+                      <?php
+                            $no++;
+                          }
+                        } else {
+                          echo "Data is missing.";
+                        }
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -254,7 +273,7 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>SAY</h3>
             <p>
-            Jl. Nguyễn, Potatoes<br>
+              Jl. Nguyễn, Potatoes<br>
               Time House<br>
               USA <br><br>
               <strong>Phone:</strong> +84 337 384 584<br>

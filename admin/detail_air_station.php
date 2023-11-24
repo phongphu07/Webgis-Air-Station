@@ -1,8 +1,5 @@
 <?php
 session_start();
-if (empty($_SESSION['username'])) {
-    header('location:../index.php');
-} else {
     include "../connect.php";
 ?>
 
@@ -27,7 +24,6 @@ if (empty($_SESSION['username'])) {
                     $data  = mysqli_fetch_array($query);
                     ?>
 
-                <?php } ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->

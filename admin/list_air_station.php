@@ -1,8 +1,5 @@
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
-    header("location:../list_Air_station.php?pesan=belum_login");
-}
 include "../connect.php";
 ?>
 
@@ -50,7 +47,7 @@ include "../connect.php";
                                         ?>
                                             <tr>
                                                 <td><?php echo $no ?></td>
-                                                <td><b><a href="detail_air_station.php?id=<?php echo $d['id']; ?> "> <?php echo $d['name']; ?> </a> </b></td>
+                                                <td><b><a href="http://localhost:8080/webgis-air-station/admin/detail_air_station.php?id=<?php echo $d['id']; ?> "> <?php echo $d['name']; ?> </a> </b></td>
                                                 <td><?php echo $d['address']; ?></td>
                                                 <td><?php echo $d['longitude']; ?></td>
                                                 <td><?php echo $d['latitude']; ?></td>

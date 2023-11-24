@@ -41,37 +41,7 @@
 
   <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-      <div class="container">
-        <div class="header-container d-flex align-items-center">
-          <div class="logo mr-auto">
-            <h1 class="text-light">
-              <a href="index.php"><span>SIG</span></a>
-            </h1>
-          </div>
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li class="active">
-                <a href="http://localhost:8080/Air_station/index.php">Home</a>
-              </li>
-              <li><a href="">Map</a></li>
-              <li>
-                <a href="http://localhost:8080/Air_station/admin/index.php"
-                  >Admin Control</a
-                >
-              </li>
-              <li class="get-started">
-                <a href="http://localhost:8080/Air_station/logout.php"
-                  >Logout</a
-                >
-              </li>
-            </ul>
-          </nav>
-          <!-- .nav-menu -->
-        </div>
-        <!-- End Header Container -->
-      </div>
-    </header>
+    <?php include "../header.php" ?>
     <!-- End Header -->
     <br /><br /><br />
     <nav

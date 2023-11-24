@@ -14,4 +14,4 @@ $img = $_POST['img'];
 mysqli_query($connect, "insert into air_station values('','$name','$address','$details','$latitude','$longitude','$img')");
 
 // mengalihkan halaman kembali ke index.php
-header("location:add_air_station.php");
+header("location:list_air_station.php");

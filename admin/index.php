@@ -1,15 +1,3 @@
-<?php
-session_start();
-include "../connect.php";
-
-if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
-    echo "Bạn cần phải đăng nhập";
-    exit; // Dừng việc thực hiện mã ngay sau thông báo
-} else {
-    header("location:../admin/index.php");
-}
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">

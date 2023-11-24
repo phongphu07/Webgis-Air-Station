@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -25,8 +26,8 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Monitoring Stations</span>
+        <i class="bi bi-ethernet"></i>            
+        <span>Monitoring Stations</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-primary collapse-inner rounded">
@@ -34,13 +35,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="list_air_station.php">
                             <i class="fas fa-fw fa-user-friends"></i>
-                            <span>Data Monitoring Stations</span></a>
+                            <span>Data Stations</span></a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="add_air_station.php">
                             <i class="fas fa-fw fa-user-friends"></i>
-                            <span>Add Monitoring Stations</span></a>
+                            <span>Add Stations</span></a>
                     </li>
                 </ul>
             </div>
@@ -80,8 +81,8 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>News Management</span>
+        <i class="bi bi-envelope-fill"></i>
+        <span>News Management</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-primary collapse-inner rounded">
@@ -94,8 +95,34 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="add_post_news.php">
+                            <i class="bi bi-envelope-plus-fill"></i>
+                             <span>Post News</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Account Management</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-primary collapse-inner rounded">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="list_user.php">
                             <i class="fas fa-fw fa-user-friends"></i>
-                            <span>Post News</span></a>
+                            <span>Account List</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_user.php">
+                            <i class="fas fa-fw fa-user-friends"></i>
+                            <span>Add Account</span></a>
                     </li>
                 </ul>
             </div>

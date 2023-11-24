@@ -29,55 +29,37 @@
                             <?php
                             include '../connect.php';
                             $id = $_GET['id'];
-                            $query = mysqli_query($connect, "select * from air_station where id='$id'");
+                            $query = mysqli_query($connect, "select * from admin where id='$id'");
                             $data  = mysqli_fetch_array($query);
                             ?>
 
                             <!-- </div> -->
                             <div class="panel-body">
-                                <form class="form-horizontal style-form" style="margin-top: 20px;" action="edit_air_station_action.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                                <form class="form-horizontal style-form" style="margin-top: 20px;" action="edit_user_action.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">ID Air Stations</label>
+                                        <label class="col-sm-2 col-sm-2 control-label">ID</label>
                                         <div class="col-sm-8">
                                             <input name="id" type="text" id="id" class="form-control" value="<?php echo $data['id']; ?>" readonly />
                                             <!--<span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Name</label>
+                                        <label class="col-sm-2 col-sm-2 control-label">Username</label>
                                         <div class="col-sm-8">
-                                            <input name="name" type="text" id="name" class="form-control" value="<?php echo $data['name']; ?>" required />
+                                            <input name="username" type="text" id="username" class="form-control" value="<?php echo $data['username']; ?>" required />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Address</label>
+                                        <label class="col-sm-2 col-sm-2 control-label">Password</label>
                                         <div class="col-sm-8">
-                                            <input name="address" class="form-control" id="address" type="text" value="<?php echo $data['address']; ?>" required />
+                                            <input name="password" class="form-control" id="password" type="" value="<?php echo $data['password']; ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Describe</label>
+                                        <label class="col-sm-2 col-sm-2 control-label">Role</label>
                                         <div class="col-sm-8">
-                                            <input name="details" class="form-control" id="details" type="text" value="<?php echo $data['details']; ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Longitude</label>
-                                        <div class="col-sm-8">
-                                            <input name="longitude" class="form-control" type="text" id="longitude" type="text" value="<?php echo $data['longitude']; ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Latitude</label>
-                                        <div class="col-sm-8">
-                                            <input name="latitude" class="form-control" id="latitude" type="text" value="<?php echo $data['latitude']; ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Image</label>
-                                        <div class="col-sm-8">
-                                            <input name="img" class="form-control" id="img" type="text" value="<?php echo $data['img']; ?>" required />
+                                            <input name="role_as" class="form-control" id="role_as" type="text" value="<?php echo $data['role_as']; ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-bottom: 20px;">

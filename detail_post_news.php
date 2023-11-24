@@ -2,18 +2,14 @@
 $id = $_GET['id'];
 include_once "retrieve_data_id.php";
 $obj = json_decode($data);
-$id = "";
-$name= "";
+$name = "";
 $description = "";
-$meta_description = "";
-$created_at = "";
+$create_at = "";
 
 foreach ($obj->results as $item) {
-  $id .= $item->id;
   $name .= $item->name;
   $description .= $item->description;
-  $meta_description .= $item->meta_description;
-  $created_at .= $item->created_at;
+  $create_at .= $item->created_at;
 }
 
 $title = $name;
@@ -55,8 +51,12 @@ $title = $name;
 <!-- Start about-info Area -->
 <section class="about-info-area section-gap">
   <div class="container" style="padding-top: 120px;">
-  <?php echo $item->$description ?>
-</div>
+    <h1><b><?php echo $item->name ?></b></h1>
+    <span><i>Đã đăng: <?php echo date('d-M-Y', strtotime($item->created_at)) ?> </i></span>
+    <br><br>
+    <br>
+    <?php echo $item->description ?>
+  </div>
 </section>
 <!-- End about-info Area -->
 <?php include "footer.php"; ?>

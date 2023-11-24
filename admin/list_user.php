@@ -30,28 +30,26 @@ include "../connect.php";
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width:5%">ID</th>
-                                            <th style="width:18%">Name </th>
-                                            <th style="width:18%">Description</th>
-                                            <th style="width:55%">Title</th>
-                                            <th style="width:5%">Actions</th>
+                                            <th>id</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 0;
-                                        $data = mysqli_query($connect, "select * from category_news");
+                                        $data = mysqli_query($connect, "select * from admin");
                                         while ($d = mysqli_fetch_array($data)) {
                                             $no++;
                                         ?>
                                             <tr>
                                                 <td><?php echo $no ?></td>
-                                                <td><b><?php echo $d['name']; ?></b></td>
-                                                <td><?php echo $d['meta_title']; ?></td>
-                                                <td><?php echo $d['description']; ?></td>
+                                                <td><b><?php echo $d['username']; ?></b></td>
+                                                <td><?php echo $d['password']; ?></td>
                                                 <td>
-                                                    <a href="edit_category_news.php?id=<?php echo $d['id']; ?> " class="btn-sm btn-primary"><span class="fas fa-edit"></a>
-                                                    <a href="delete_category_news.php?id=<?php echo $d['id']; ?>" class="btn-sm btn-danger"><span class="fas fa-trash"></a>
+                                                    <a href="edit_user.php?id=<?php echo $d['id']; ?> " class="btn-sm btn-primary"><span class="fas fa-edit"></a>
+                                                    <a href="delete_user.php?id=<?php echo $d['id']; ?>" class="btn-sm btn-danger"><span class="fas fa-trash"></a>
                                                 </td>
                                             </tr>
                             </div>

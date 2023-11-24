@@ -12,4 +12,4 @@ $meta_description = $_POST['meta_description'];
 mysqli_query($connect, "insert into category_news values('','$name','$description','$meta_title','$meta_description')");
 
 // mengalihkan halaman kembali ke index.php
-header("location:add_category_news.php");
+header("location:category_news.php");
